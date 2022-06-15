@@ -1,0 +1,26 @@
+body {
+    background-color: #323437;
+    color: #d1d0c5;
+}
+input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+input, p {
+  font-family: monospace;
+  font-size: 25px
+}
+input {
+  background-color: #ddd;
+  border: none
+}
+p {
+  color: grey;
+}
+.good {
+  color: #d1d0c5;
+}
+.wrong {
+  color: red;
+}

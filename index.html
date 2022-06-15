@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js" type="module"></script>
+    <title>Typing Speed Test</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Typing Speed Test</h1>
+        <p>
+            <span v-for="(char, index) in textObject" :key="index" :id="index" :class="char.state">
+                {{ char.char }}
+            </span>
+        </p>
+        <input @input="checkText" v-model="inputText" :autofocus="true">
+    </div>
+</body>
+
+</html>
