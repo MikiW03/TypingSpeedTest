@@ -1,4 +1,3 @@
-window.addEventListener("load", document.querySelector("input").focus());
 document.onmousedown = (e) => {
   e.preventDefault();
 };
@@ -8,6 +7,7 @@ Vue.createApp({
     return {
       inputText: "",
       textData: "",
+      numberOfWords: 20,
     };
   },
   created() {
@@ -19,7 +19,7 @@ Vue.createApp({
   computed: {
     text() {
       let arr = [];
-      for (let i = 0; i <= 20; i++) {
+      for (let i = 0; i < this.numberOfWords; i++) {
         arr.push(
           this.textData[Math.floor(Math.random() * this.textData.length)],
         );

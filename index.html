@@ -13,8 +13,8 @@
 
 <body>
     <div id="app">
-        <h1>Typing Speed Test</h1>
-        <p>
+        <h1 id="title">Typing Speed Test</h1>
+        <p id="text">
             <span v-for="(char, index) in textObject" :key="index" :id="index" :class="char.state">
                 {{ char.char }}
             </span>
