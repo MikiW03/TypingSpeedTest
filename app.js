@@ -1,52 +1,57 @@
-console.log(document.querySelector('input'))
-window.addEventListener('load', document.querySelector('input').focus())
-
+window.addEventListener("load", document.querySelector("input").focus());
 document.onmousedown = (e) => {
   e.preventDefault();
-}
+};
 
 Vue.createApp({
   data() {
     return {
       inputText: "",
-      text: ""
-    }
+      textData: "",
+    };
   },
   created() {
-    fetch("https://baconipsum.com/api/?type=meat-and-filler&sentences=5&format=text")
-      .then(response => response.text())
-      .then(data => this.text = data)
-      .catch(error => console.log(error))
-
+    fetch("./words.txt")
+      .then((response) => response.text())
+      .then((data) => (this.textData = data.split("\n")))
+      .catch((error) => console.log(error));
   },
   computed: {
+    text() {
+      let arr = [];
+      for (let i = 0; i <= 20; i++) {
+        arr.push(
+          this.textData[Math.floor(Math.random() * this.textData.length)],
+        );
+      }
+      return arr.join(" ");
+    },
     textObject() {
       return Array.from(this.text).map((char) => {
-        return { "char": char, "state": "grey" }
-      })
-    }
+        return { char: char, state: "grey" };
+      });
+    },
   },
   methods: {
     compare(typed, og) {
       if (typed && og) {
-        return typed === og
+        return typed === og;
       }
     },
     checkText() {
       Array.from(this.text).forEach((char, i) => {
         switch (this.compare(char, this.inputText[i])) {
           case true:
-            this.textObject[i].state = "good"
-            break
+            this.textObject[i].state = "good";
+            break;
           case false:
-            this.textObject[i].state = "wrong"
-            break
+            this.textObject[i].state = "wrong";
+            break;
           default:
-            this.textObject[i].state = ""
-            break
+            this.textObject[i].state = "";
+            break;
         }
-      })
-    }
-  }
-}).mount("#app")
-
+      });
+    },
+  },
+}).mount("#app");
