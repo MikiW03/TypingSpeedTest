@@ -7,7 +7,10 @@ Vue.createApp({
     return {
       inputText: "",
       textData: "",
-      numberOfWords: 20,
+      numberOfWords: 100,
+      numberOfTypedWords: 0,
+      time: 30,
+      started: false,
     };
   },
   created() {
@@ -33,14 +36,42 @@ Vue.createApp({
     },
   },
   methods: {
-    compare(typed, og) {
-      if (typed && og) {
-        return typed === og;
+    inputHandler() {
+      this.checkText();
+      this.manageClock();
+    },
+
+    startClock() {
+      console.log("start");
+      this.clock = setInterval(() => {
+        this.time--;
+        if (this.time <= 0) {
+          this.endClock();
+        }
+      }, 1000);
+    },
+
+    endClock() {
+      console.log(`end, result is ${this.inputText.split(" ").length * 2} wpm`);
+      clearInterval(this.clock);
+    },
+
+    manageClock() {
+      if (!this.started && this.inputText.length == 1) {
+        this.startClock();
+        this.started = true;
       }
     },
+
     checkText() {
+      function compare(typed, og) {
+        if (typed && og) {
+          return typed === og;
+        }
+      }
+
       Array.from(this.text).forEach((char, i) => {
-        switch (this.compare(char, this.inputText[i])) {
+        switch (compare(char, this.inputText[i])) {
           case true:
             this.textObject[i].state = "good";
             break;

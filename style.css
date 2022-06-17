@@ -19,11 +19,17 @@ input {
   background-color: #ddd;
   border: none;
 }
+#clock {
+  color: rgb(217, 217, 0);
+  font-size: 1.5rem;
+  width: 70%;
+  margin: auto
+}
 #text {
   color: grey;
   width: 70%;
   margin: auto;
-  padding: 1em;
+  padding: 15px;
   border-radius: 10px;
   background-color: #555;
 }
@@ -32,4 +38,5 @@ input {
 }
 .wrong {
   color: red;
+  background-color: red;
 }
