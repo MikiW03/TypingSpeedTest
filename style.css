@@ -2,6 +2,9 @@ body {
   background-color: #323437;
   color: #d1d0c5;
 }
+p {
+  margin: 0
+}
 #title {
   text-align: center;
 }
@@ -19,11 +22,13 @@ input {
   background-color: #ddd;
   border: none;
 }
-#clock {
+#dashboard {
   color: rgb(217, 217, 0);
   font-size: 1.5rem;
   width: 70%;
-  margin: auto
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
 }
 #text {
   color: grey;

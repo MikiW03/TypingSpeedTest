@@ -14,7 +14,10 @@
 <body>
     <div id="app">
         <h1 id="title">Typing Speed Test</h1>
-        <div id="clock">{{ time }}s</div>
+        <div id="dashboard">
+            <p id="clock">{{ time }}s</p>
+            <p id="pace">{{ pace }} WPM</p>
+        </div>
         <p id="text">
             <span v-for="(char, index) in textObject" :key="index" :id="index" :class="char.state">
                 {{ char.char }}

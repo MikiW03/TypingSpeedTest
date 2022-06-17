@@ -34,6 +34,11 @@ Vue.createApp({
         return { char: char, state: "grey" };
       });
     },
+    pace() {
+      let partOfMinute = 60 / (30 - this.time);
+      partOfMinute = partOfMinute == Infinity ? 0 : partOfMinute;
+      return Math.round(partOfMinute * this.inputText.split(" ").length);
+    },
   },
   methods: {
     inputHandler() {
@@ -52,8 +57,8 @@ Vue.createApp({
     },
 
     endClock() {
-      console.log(`end, result is ${this.inputText.split(" ").length * 2} wpm`);
       clearInterval(this.clock);
+      console.log(`end, result is ${this.inputText.split(" ").length * 2} wpm`);
     },
 
     manageClock() {
