@@ -38,6 +38,14 @@ input {
   border-radius: 10px;
   background-color: #555;
 }
+#restart {
+  background-color: inherit;
+  border-style: none;
+}
+#restart > img {
+  height: 1.5rem;
+}
+
 .good {
   color: #d1d0c5;
 }

@@ -57,6 +57,7 @@ Vue.createApp({
     },
 
     endClock() {
+      document.querySelector("input").disabled = true;
       clearInterval(this.clock);
       console.log(`end, result is ${this.inputText.split(" ").length * 2} wpm`);
     },
@@ -88,6 +89,9 @@ Vue.createApp({
             break;
         }
       });
+    },
+    restart() {
+      window.location.reload();
     },
   },
 }).mount("#app");
