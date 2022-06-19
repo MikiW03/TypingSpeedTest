@@ -3,7 +3,7 @@ body {
   color: #d1d0c5;
 }
 p {
-  margin: 0
+  margin: 0;
 }
 #title {
   text-align: center;
@@ -51,4 +51,7 @@ input {
 }
 .wrong {
   color: red;
+}
+.wrong-space {
+  background-color: red;
 }

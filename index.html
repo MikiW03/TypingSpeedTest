@@ -22,7 +22,7 @@
         </div>
         <input @input="inputHandler" v-model="inputText" :autofocus="true">
         <p id="text">
-            <span v-for="(char, index) in textObject" :key="index" :id="index" :class="char.state">
+            <span v-for="(char, index) in textObject" :key="index" :id="index" :class="[char.state, char.word]">
                 {{ char.char }}
             </span>
         </p>

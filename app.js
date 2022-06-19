@@ -5,11 +5,12 @@ document.onmousedown = (e) => {
 Vue.createApp({
   data() {
     return {
+      numberOfWords: 100,
+      time: 30,
+
       inputText: "",
       textData: "",
-      numberOfWords: 100,
       numberOfTypedWords: 0,
-      time: 30,
       started: false,
     };
   },
@@ -30,10 +31,27 @@ Vue.createApp({
       return arr.join(" ");
     },
     textObject() {
-      return Array.from(this.text).map((char) => {
-        return { char: char, state: "grey" };
+      let arr = this.text.split(" ").map((word) => {
+        return word.split("");
       });
+
+      arr = arr.map((word, i) => {
+        return word.map((char, j) => {
+          return { char: char, state: "grey", word: `${i}` };
+        });
+      });
+
+      arr.map((el, i) => {
+        if (i != arr.length - 1) {
+          el.push({ char: " ", state: "grey", word: `${i}` });
+        }
+      });
+
+      arr = arr.flat();
+
+      return arr;
     },
+
     pace() {
       let partOfMinute = 60 / (30 - this.time);
       partOfMinute = partOfMinute == Infinity ? 0 : partOfMinute;
@@ -82,7 +100,11 @@ Vue.createApp({
             this.textObject[i].state = "good";
             break;
           case false:
-            this.textObject[i].state = "wrong";
+            if (char == " ") {
+              this.textObject[i].state = "wrong-space";
+            } else {
+              this.textObject[i].state = "wrong";
+            }
             break;
           default:
             this.textObject[i].state = "";
