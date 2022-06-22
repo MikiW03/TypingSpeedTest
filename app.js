@@ -68,7 +68,6 @@ Vue.createApp({
     },
 
     startClock() {
-      console.log("start");
       this.clock = setInterval(() => {
         this.time--;
         if (this.time <= 0) {
@@ -81,7 +80,6 @@ Vue.createApp({
       document.querySelector("input").disabled = true;
       this.validateInput();
       clearInterval(this.clock);
-      console.log(`end, result is ${this.inputText.split(" ").length * 2} wpm`);
     },
 
     manageClock() {
