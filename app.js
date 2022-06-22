@@ -1,16 +1,16 @@
-document.onmousedown = (e) => {
+document.addEventListener("mousedown", (e) => {
   e.preventDefault();
-};
+});
 
 Vue.createApp({
   data() {
     return {
-      numberOfWords: 100,
+      numberOfWords: 80,
       time: 30,
 
       inputText: "",
       textData: "",
-      numberOfTypedWords: 0,
+      countOfWrongTypedWords: 0,
       started: false,
     };
   },
@@ -55,7 +55,10 @@ Vue.createApp({
     pace() {
       let partOfMinute = 60 / (30 - this.time);
       partOfMinute = partOfMinute == Infinity ? 0 : partOfMinute;
-      return Math.round(partOfMinute * this.inputText.split(" ").length);
+      return Math.round(
+        partOfMinute *
+          (this.inputText.split(" ").length - this.countOfWrongTypedWords),
+      );
     },
   },
   methods: {
@@ -76,6 +79,7 @@ Vue.createApp({
 
     endClock() {
       document.querySelector("input").disabled = true;
+      this.validateInput();
       clearInterval(this.clock);
       console.log(`end, result is ${this.inputText.split(" ").length * 2} wpm`);
     },
@@ -112,6 +116,17 @@ Vue.createApp({
         }
       });
     },
+
+    validateInput() {
+      let wrong = [];
+      for (val of this.textObject) {
+        if (val.state == "wrong" || val.state == "wrong-space") {
+          wrong.push(val.word);
+        }
+      }
+      this.countOfWrongTypedWords = new Set(wrong).size;
+    },
+
     restart() {
       window.location.reload();
     },
