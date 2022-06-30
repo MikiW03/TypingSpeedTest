@@ -2,6 +2,10 @@ document.addEventListener("mousedown", (e) => {
   e.preventDefault();
 });
 
+const focus = {
+  mounted: (e) => e.focus(),
+};
+
 Vue.createApp({
   data() {
     return {
@@ -60,6 +64,9 @@ Vue.createApp({
           (this.inputText.split(" ").length - this.countOfWrongTypedWords),
       );
     },
+  },
+  directives: {
+    focus,
   },
   methods: {
     inputHandler() {

@@ -20,7 +20,7 @@
             <button id="restart" v-if="started" @click="restart"><img src="restart.png" alt="restart button"></button>
             <p id="pace">{{ pace }} WPM</p>
         </div>
-        <input @input="inputHandler" v-model="inputText" :autofocus="true">
+        <input @input="inputHandler" v-model="inputText" v-focus>
         <p id="text">
             <span v-for="(char, index) in textObject" :key="index" :id="index" :class="[char.state, char.word]">
                 {{ char.char }}
